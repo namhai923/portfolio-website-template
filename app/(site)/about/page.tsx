@@ -47,11 +47,11 @@ export default function AboutPage() {
         <div className="xl:mx-7 md:px-5 py-12">
           <div className="flex flex-col gap-y-5 text-center place-items-center">
             <PageHeaderHeading className="font-bold">
-              Ready to make it official?
+              {"Ready to make it official?"}
             </PageHeaderHeading>
             <Link href={"/contact"}>
               <PageHeaderDescription className="text-lg text-destructive underline uppercase">
-                get in touch
+                {"get in touch"}
               </PageHeaderDescription>
             </Link>
           </div>
@@ -62,12 +62,14 @@ export default function AboutPage() {
         <div className="xl:mx-7 md:px-5 py-12">
           <div className="flex flex-col gap-y-5 text-center place-items-center">
             <SidebarItemText className="font-bold text-secondary">
-              This example features work from the following illustrators and
-              photographers:
+              {
+                "This example features work from the following illustrators and photographers:"
+              }
             </SidebarItemText>
             <PageHeaderDescription className="text-xs">
-              Gabrielle Henderson, Katerina Limpitsouni, Pablo Stanley, Vijay
-              Verma
+              {
+                "Gabrielle Henderson, Katerina Limpitsouni, Pablo Stanley, Vijay Verma"
+              }
             </PageHeaderDescription>
           </div>
         </div>

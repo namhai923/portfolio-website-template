@@ -34,12 +34,13 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeader>
             <h2 className=" place-content-center text-center text-5xl font-bold capitalize">
-              let's work together!
+              {"let's work together!"}
             </h2>
           </PageHeader>
           <PageHeaderDescription className="text-lg text-secondary tracking-tighter">
-            Custom illustration can make all the difference when marketing your
-            brand.
+            {
+              "Custom illustration can make all the difference when marketing your brand."
+            }
           </PageHeaderDescription>
         </div>
       </div>
@@ -72,10 +73,10 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
       <div className="xl:mx-7 md:px-5 py-12">
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeaderHeading className="font-bold">
-            Ready to make it official?
+            {"Ready to make it official?"}
           </PageHeaderHeading>
           <PageHeaderDescription className="text-lg tracking-tighter">
-            Get in touch using this form.
+            {"Get in touch using this form."}
           </PageHeaderDescription>
         </div>
       </div>
