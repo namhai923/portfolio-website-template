@@ -7,7 +7,6 @@ import { motion, useInView } from "framer-motion"
 
 import {
   PageHeader,
-  SidebarItemText,
   PageHeaderHeading,
   PageHeaderDescription,
 } from "./page-text"
