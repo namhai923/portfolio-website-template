@@ -1,5 +1,3 @@
-import Balance from "react-wrap-balancer"
-
 import { cn } from "@/lib/utils"
 
 function SidebarHeading({
@@ -68,7 +66,7 @@ function PageHeaderDescription({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <Balance
+    <span
       className={cn(
         "lg:max-w-[750px] font-mono font-normal text-base text-secondary",
         className
