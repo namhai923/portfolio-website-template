@@ -1,8 +1,4 @@
-import Image from "next/image"
-import Link from "next/link"
-
-import { urlFor } from "@/sanity/lib/utils"
-import { imagePlaceholder } from "@/lib/utils"
+import { Home } from "@/components/home"
 
 const madeForYouAlbums = [
   {
@@ -43,42 +39,10 @@ const madeForYouAlbums = [
   },
 ]
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="px-6 pt-24 md:p-0">
-      <ul className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3">
-        {madeForYouAlbums?.map((blogInfo, idx) => (
-          <Link key={idx} href={`/${blogInfo.name.toLowerCase()}`}>
-            <div className="group">
-              <div className="relative w-full aspect-square">
-                {/* <Image
-            priority
-            className="h-auto w-auto object-cover transition-all group-hover:scale-105 rounded-t-lg"
-            src={
-              blogInfo.cover ? urlFor(blogInfo.cover).url() : imagePlaceholder
-            }
-            alt={blogInfo.name}
-            fill
-            sizes="(min-width: 1000px) 30vw, 50vw"
-            style={{ objectFit: "cover" }}
-          /> */}
-                <Image
-                  priority
-                  src={blogInfo.cover ?? imagePlaceholder}
-                  alt={blogInfo.name}
-                  fill
-                  sizes="(min-width: 1000px) 30vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-                <div className="absolute h-full w-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-70 transition duration-200 ease-out"></div>
-                <div className="absolute h-full w-full text-2xl text-background place-content-center text-center font-bold opacity-0 group-hover:opacity-100 transition duration-300 ease-out">
-                  {blogInfo.name}
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </ul>
-    </div>
+    <main className="px-6 pt-24 md:p-0">
+      <Home categories={madeForYouAlbums} />
+    </main>
   )
 }

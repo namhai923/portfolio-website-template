@@ -5,6 +5,8 @@ import Image from "next/image"
 
 import { motion, useInView } from "framer-motion"
 
+import ContactUs from "./contact-us"
+
 import {
   PageHeader,
   PageHeaderHeading,
@@ -30,7 +32,7 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
       ref={ref}
       id="contact"
     >
-      <div className="xl:mx-7 md:px-5 py-12">
+      <div className="grid xl:mx-7 md:px-5 py-12 gap-y-24">
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeader>
             <h2 className=" place-content-center text-center text-5xl font-bold capitalize">
@@ -43,8 +45,6 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
             }
           </PageHeaderDescription>
         </div>
-      </div>
-      <div className="xl:mx-20 md:px-5 py-12">
         <ul className="grid md:grid-cols-4 gap-3 lg:gap-8">
           {contactSection.map((contactInfo, idx) => (
             <li key={idx}>
@@ -69,8 +69,6 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
             </li>
           ))}
         </ul>
-      </div>
-      <div className="xl:mx-7 md:px-5 py-12">
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeaderHeading className="font-bold">
             {"Ready to make it official?"}
@@ -79,6 +77,7 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
             {"Get in touch using this form."}
           </PageHeaderDescription>
         </div>
+        <ContactUs />
       </div>
     </motion.section>
   )

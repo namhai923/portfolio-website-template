@@ -1,9 +1,9 @@
 "use client"
 
-import { FormEvent, Suspense, useState } from "react"
+import { FormEvent, useState } from "react"
 
 import { Input } from "./ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "./ui/textarea"
 import { Button } from "./ui/button"
 
 const initFormState = {
@@ -36,9 +36,9 @@ export default function ContactUs() {
   }
 
   return (
-    <div className="flex justify-center xl:mx-7 md:px-5 py-12">
+    <div className="flex justify-center">
       <form
-        className="flex text-secondary flex-col gap-3 w-full md:w-3/6"
+        className="flex text-secondary flex-col gap-3 w-full md:w-4/6 lg:w-3/6"
         onSubmit={handleSendMessage}
       >
         <div className="grid">

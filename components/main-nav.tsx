@@ -10,7 +10,7 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons-react"
 
-import { SidebarHeading, SidebarGroupText } from "@/components/page-text"
+import { SidebarHeading, SidebarGroupText } from "./page-text"
 import { NavItem } from "./nav-item"
 
 let items = [

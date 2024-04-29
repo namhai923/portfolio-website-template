@@ -6,6 +6,7 @@ import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 
 import { PageHeader } from "./page-text"
+
 import { imagePlaceholder } from "@/lib/utils"
 
 export function HeroSection({ heroSection }: { heroSection: any }) {

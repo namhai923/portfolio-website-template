@@ -1,5 +1,5 @@
-import { MainNav } from "@/components/main-nav"
-import { MobileNav } from "@/components/mobile-nav"
+import { MainNav } from "./main-nav"
+import { MobileNav } from "./mobile-nav"
 
 export function SiteNav() {
   return (

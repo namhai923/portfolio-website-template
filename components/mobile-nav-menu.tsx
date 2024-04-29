@@ -4,12 +4,14 @@ import { createPortal } from "react-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import { IconChevronDown } from "@tabler/icons-react"
 
-import { cn } from "@/lib/utils"
-import { useLockBody } from "@/hooks/use-lock-body"
 import { zoomInandOutAnimationVariant } from "./in-view"
 import { NavItem } from "./nav-item"
 
+import { cn } from "@/lib/utils"
+import { useLockBody } from "@/hooks/use-lock-body"
+
 const items = ["illustrations", "about", "contact"]
+
 const subItems = [
   "Doodles",
   "People",

@@ -1,33 +1,6 @@
-"use client"
-
 import { QueryParams } from "next-sanity"
-import Image from "next/image"
-import Link from "next/link"
 
-import LightGallery from "lightgallery/react"
-
-// import styles
-import "lightgallery/css/lightgallery.css"
-import "lightgallery/css/lg-zoom.css"
-import "lightgallery/css/lg-thumbnail.css"
-import "lightgallery/css/lg-autoplay.css"
-import "lightgallery/css/lg-share.css"
-import "lightgallery/css/lg-fullscreen.css"
-
-// import plugins if you need
-import lgThumbnail from "lightgallery/plugins/thumbnail"
-import lgZoom from "lightgallery/plugins/zoom"
-import lgAutoPlay from "lightgallery/plugins/autoplay"
-import lgShare from "lightgallery/plugins/share"
-import lgHash from "lightgallery/plugins/hash"
-import lgFullScreen from "lightgallery/plugins/fullscreen"
-
-import {
-  PageHeader,
-  PageHeaderHeading,
-  PageHeaderDescription,
-} from "@/components/page-text"
-import { imagePlaceholder } from "@/lib/utils"
+import Gallery from "@/components/gallery"
 
 const madeForYouAlbums = [
   {
@@ -140,46 +113,11 @@ const madeForYouAlbums = [
   },
 ]
 
-export default function CategoryGallery({ params }: { params: QueryParams }) {
-  return (
-    <div className="pt-24 md:p-0">
-      <PageHeader className="relative p-10">
-        <PageHeaderHeading>{params.category}</PageHeaderHeading>
-        <PageHeaderDescription>
-          This is where the description for {params.category} will be placed
-        </PageHeaderDescription>
-      </PageHeader>
-      <LightGallery
-        plugins={[
-          lgThumbnail,
-          lgZoom,
-          lgAutoPlay,
-          lgShare,
-          lgHash,
-          lgFullScreen,
-        ]}
-        mode="lg-slide"
-        elementClassNames={"grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"}
-        speed={500}
-      >
-        {madeForYouAlbums?.map((album, idx) => {
-          return (
-            <a key={idx} data-src={album.cover}>
-              <div className="relative w-full aspect-square overflow-hidden cursor-pointer">
-                <Image
-                  priority
-                  className="hover:scale-105 duration-500 ease-out"
-                  src={album.cover ?? imagePlaceholder}
-                  alt={album.name}
-                  fill
-                  sizes="(min-width: 1000px) 30vw, 50vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </a>
-          )
-        })}
-      </LightGallery>
-    </div>
-  )
+export default function CategoryPage({ params }: { params: QueryParams }) {
+  const category = {
+    name: params.category,
+    description: `This is where the description for ${params.category} will be placed`,
+    gallery: madeForYouAlbums,
+  }
+  return <Gallery category={category} />
 }

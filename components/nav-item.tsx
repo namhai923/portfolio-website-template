@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { SidebarItemText } from "./page-text"
+
 import { cn } from "@/lib/utils"
-import { SidebarItemText } from "@/components/page-text"
 
 export function NavItem({
   itemText,

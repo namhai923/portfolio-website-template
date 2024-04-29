@@ -1,7 +1,4 @@
 import { ContactSection } from "@/components/contact-section"
-import { Separator } from "@/components/ui/separator"
-
-import ContactUs from "@/components/contact-us"
 
 const contactSection = [
   {
@@ -28,11 +25,8 @@ const contactSection = [
 
 export default function ContactPage() {
   return (
-    <main className="flex flex-col items-center">
-      <div className="container relative space-y-5 pt-24 md:pt-10">
-        <ContactSection contactSection={contactSection} />
-        <ContactUs />
-      </div>
+    <main className="container relative space-y-5 pt-24 md:pt-10">
+      <ContactSection contactSection={contactSection} />
     </main>
   )
 }
