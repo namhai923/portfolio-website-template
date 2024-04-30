@@ -10,15 +10,12 @@ import "lightgallery/css/lightgallery.css"
 import "lightgallery/css/lg-zoom.css"
 import "lightgallery/css/lg-thumbnail.css"
 import "lightgallery/css/lg-autoplay.css"
-import "lightgallery/css/lg-share.css"
 import "lightgallery/css/lg-fullscreen.css"
 
 // import plugins if you need
 import lgThumbnail from "lightgallery/plugins/thumbnail"
 import lgZoom from "lightgallery/plugins/zoom"
 import lgAutoPlay from "lightgallery/plugins/autoplay"
-import lgShare from "lightgallery/plugins/share"
-import lgHash from "lightgallery/plugins/hash"
 import lgFullScreen from "lightgallery/plugins/fullscreen"
 
 import {
@@ -61,14 +58,7 @@ export default function Gallery({ category }: { category: any }) {
       </motion.div>
 
       <LightGallery
-        plugins={[
-          lgThumbnail,
-          lgZoom,
-          lgAutoPlay,
-          lgShare,
-          lgHash,
-          lgFullScreen,
-        ]}
+        plugins={[lgThumbnail, lgZoom, lgAutoPlay, lgFullScreen]}
         mode="lg-slide"
         elementClassNames={"grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"}
         speed={500}
