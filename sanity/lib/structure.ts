@@ -1,16 +1,24 @@
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list"
+
 export const structure = (S: any, context: any) =>
   S.list()
     .title("Content")
     .items([
+      orderableDocumentListDeskItem({ type: "category", S, context }),
       S.listItem()
-        .title("Info")
+        .title("About")
+        .child(S.editor().id("about").schemaType("about").documentId("about")),
+      S.listItem()
+        .title("Contact")
+        .child(
+          S.editor().id("contact").schemaType("contact").documentId("contact")
+        ),
+      S.listItem()
+        .title("Navigation")
         .child(
           S.editor()
-            .id("infoPage")
-            .schemaType("infoPage")
-            .documentId("infoPage")
+            .id("navigation")
+            .schemaType("navigation")
+            .documentId("navigation")
         ),
-      ...S.documentTypeListItems().filter(
-        (listItem: any) => !["infoPage"].includes(listItem.getId())
-      ),
     ])

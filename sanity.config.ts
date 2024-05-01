@@ -22,6 +22,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({ structure }),
+    // structureTool(),
     visionTool(),
     presentationTool({
       locate,

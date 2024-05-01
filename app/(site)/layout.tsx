@@ -1,14 +1,16 @@
 import "@/styles/globals.css"
+
 import type { Metadata } from "next"
 import { draftMode } from "next/headers"
 
-import { ScrollArea } from "@/components/ui/scroll-area"
-
 import { siteConfig } from "@/config/site"
-import { fontMono, fontPopp, fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
+
+import { ScrollArea } from "@/components/ui/scroll-area"
 import VisualEditing from "@/components/visual-editing"
 import { SiteNav } from "@/components/site-nav"
+
+import { fontMono, fontPopp, fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: {

@@ -1,10 +1,10 @@
 import * as React from "react"
 import { createPortal } from "react-dom"
+import { SanityDocument } from "next-sanity"
 
 import { AnimatePresence, motion } from "framer-motion"
 import { IconChevronDown } from "@tabler/icons-react"
 
-import { zoomInandOutAnimationVariant } from "./in-view"
 import { NavItem } from "./nav-item"
 
 import { cn } from "@/lib/utils"
@@ -12,20 +12,13 @@ import { useLockBody } from "@/hooks/use-lock-body"
 
 const items = ["illustrations", "about", "contact"]
 
-const subItems = [
-  "Doodles",
-  "People",
-  "Corporate",
-  "Graphics",
-  "Icons",
-  "Miscellaneous",
-]
-
-interface MobileNavMenuProps {
+export function MobileNavMenu({
+  categoriesInfo,
+  onClick,
+}: {
+  categoriesInfo: SanityDocument[]
   onClick?: () => void
-}
-
-export function MobileNavMenu({ onClick }: MobileNavMenuProps) {
+}) {
   useLockBody()
 
   return (
@@ -45,7 +38,7 @@ export function MobileNavMenu({ onClick }: MobileNavMenuProps) {
                     {item === "illustrations" ? (
                       <MobileNavSub
                         item={item}
-                        subItems={subItems}
+                        subItems={categoriesInfo}
                         onClick={onClick}
                       />
                     ) : (
@@ -74,7 +67,7 @@ export function MobileNavSub({
   onClick,
 }: {
   item: string
-  subItems: string[]
+  subItems: SanityDocument[]
   onClick?: () => void
 }) {
   const [open, setOpen] = React.useState(false)
@@ -86,11 +79,31 @@ export function MobileNavSub({
     setOpen(false)
   }
 
+  const zoomInandOutAnimationVariant = {
+    initial: {
+      scale: 0.9,
+    },
+    animate: {
+      scale: 1,
+      transition: {
+        duration: 0.15,
+        ease: "easeOut",
+      },
+    },
+    exit: {
+      scale: 0.95,
+      transition: {
+        duration: 0.15,
+        ease: "easeIn",
+      },
+    },
+  }
+
   return (
     <div className="group p-4" tabIndex={-1} aria-disabled={true}>
       <div
         className={
-          "flex items-center text-sm transition-colors font-medium duration-300 text-foreground select-none capitalize"
+          "flex items-center text-sm transition-colors font-medium duration-300 text-primary select-none capitalize"
         }
         onClick={handleOpen}
       >
@@ -114,16 +127,16 @@ export function MobileNavSub({
               className="flex gap-2 items-center group font-bold mb-5"
             >
               <IconChevronDown
-                className="relative text-foreground top-[1px]  h-3 w-3 transition duration-200 rotate-90"
+                className="relative text-primary top-[1px]  h-3 w-3 transition duration-200 rotate-90"
                 aria-hidden="true"
               />
-              <p className="text-foreground text-base">Back</p>
+              <p className="text-primary text-base">Back</p>
             </div>
             {subItems?.map((item, idx) => (
               <NavItem
                 key={idx}
-                itemText={item}
-                navUrl={`/${item.toLowerCase()}`}
+                itemText={item.categoryName}
+                navUrl={`/${item.slug}`}
                 onClick={onClick}
               />
             ))}

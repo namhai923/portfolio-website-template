@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import Image from "next/image"
+import { SanityDocument } from "next-sanity"
 
 import { motion, useInView } from "framer-motion"
 
@@ -12,9 +13,15 @@ import {
   PageHeaderHeading,
   PageHeaderDescription,
 } from "./page-text"
+
+import { urlFor } from "@/sanity/lib/utils"
 import { imagePlaceholder } from "@/lib/utils"
 
-export function ContactSection({ contactSection }: { contactSection: any[] }) {
+export default function ContactSection({
+  contactData,
+}: {
+  contactData: SanityDocument
+}) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
@@ -36,24 +43,26 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeader>
             <h2 className=" place-content-center text-center text-5xl font-bold capitalize">
-              {"let's work together!"}
+              {contactData.title}
             </h2>
           </PageHeader>
           <PageHeaderDescription className="text-lg text-secondary tracking-tighter">
-            {
-              "Custom illustration can make all the difference when marketing your brand."
-            }
+            {contactData.subtitle}
           </PageHeaderDescription>
         </div>
         <ul className="grid md:grid-cols-4 gap-3 lg:gap-8">
-          {contactSection.map((contactInfo, idx) => (
+          {contactData.contactItems?.map((contactItem: any, idx: number) => (
             <li key={idx}>
               <div className="flex flex-col gap-y-3">
                 <div className="relative w-full aspect-square">
                   <Image
                     priority
-                    src={contactInfo.cover ?? imagePlaceholder}
-                    alt={contactInfo.title}
+                    src={
+                      contactItem.cover
+                        ? urlFor(contactItem.cover).url()
+                        : imagePlaceholder
+                    }
+                    alt={contactItem.title}
                     fill
                     sizes="(min-width: 1000px) 30vw, 50vw"
                     style={{ objectFit: "cover" }}
@@ -63,7 +72,7 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
                   {`0${idx + 1}`}
                 </h2>
                 <PageHeaderDescription className="text-lg text-secondary tracking-tighter uppercase">
-                  {contactInfo.title}
+                  {contactItem.title}
                 </PageHeaderDescription>
               </div>
             </li>
@@ -71,10 +80,10 @@ export function ContactSection({ contactSection }: { contactSection: any[] }) {
         </ul>
         <div className="flex flex-col gap-y-3 text-center place-items-center">
           <PageHeaderHeading className="font-bold">
-            {"Ready to make it official?"}
+            {contactData.formMessage.title}
           </PageHeaderHeading>
           <PageHeaderDescription className="text-lg tracking-tighter">
-            {"Get in touch using this form."}
+            {contactData.formMessage.subtitle}
           </PageHeaderDescription>
         </div>
         <ContactUs />

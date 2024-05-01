@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { SanityDocument } from "next-sanity"
 
 import LightGallery from "lightgallery/react"
 import { motion } from "framer-motion"
@@ -24,9 +25,10 @@ import {
   PageHeaderDescription,
 } from "./page-text"
 
+import { urlFor } from "@/sanity/lib/utils"
 import { imagePlaceholder } from "@/lib/utils"
 
-export default function Gallery({ category }: { category: any }) {
+export default function Gallery({ category }: { category: SanityDocument }) {
   const cardVariants = {
     initial: { y: 50, opacity: 0 },
     animate: { y: 0, opacity: 1 },
@@ -52,8 +54,10 @@ export default function Gallery({ category }: { category: any }) {
         transition={{ duration: 0.3 }}
       >
         <PageHeader className="relative p-10">
-          <PageHeaderHeading>{category.name}</PageHeaderHeading>
-          <PageHeaderDescription>{category.description}</PageHeaderDescription>
+          <PageHeaderHeading>{category.categoryTitle}</PageHeaderHeading>
+          <PageHeaderDescription>
+            {category.categoryDescription}
+          </PageHeaderDescription>
         </PageHeader>
       </motion.div>
 
@@ -63,10 +67,20 @@ export default function Gallery({ category }: { category: any }) {
         elementClassNames={"grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"}
         speed={500}
       >
-        {category.gallery?.map(
-          (album: { cover: any; name: string }, idx: number) => {
+        {category.categoryItems?.map(
+          (
+            categoryItem: { itemCover: any; itemDescription: string },
+            idx: number
+          ) => {
             return (
-              <a key={idx} data-src={album.cover}>
+              <a
+                key={idx}
+                data-src={
+                  categoryItem.itemCover
+                    ? urlFor(categoryItem.itemCover).url()
+                    : imagePlaceholder
+                }
+              >
                 <motion.div
                   variants={cardVariants}
                   initial="initial"
@@ -77,8 +91,12 @@ export default function Gallery({ category }: { category: any }) {
                   <Image
                     priority
                     className="hover:scale-105 duration-500 ease-out"
-                    src={album.cover ?? imagePlaceholder}
-                    alt={album.name}
+                    src={
+                      categoryItem.itemCover
+                        ? urlFor(categoryItem.itemCover).url()
+                        : imagePlaceholder
+                    }
+                    alt={categoryItem.itemDescription}
                     fill
                     sizes="(min-width: 1000px) 30vw, 50vw"
                     style={{ objectFit: "cover" }}

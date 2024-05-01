@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { SanityDocument } from "next-sanity"
 
 import {
   IconBrandYoutubeFilled,
@@ -13,32 +14,23 @@ import {
 import { SidebarHeading, SidebarGroupText } from "./page-text"
 import { NavItem } from "./nav-item"
 
-let items = [
-  "Doodles",
-  "People",
-  "Corporate",
-  "Graphics",
-  "Icons",
-  "Miscellaneous",
-]
-
 let aboutItems = ["About", "Contact"]
 
-let socials = [
-  { socialType: "instagram", socialUrl: "http://www.instagram.com" },
-  { socialType: "youtube", socialUrl: "http://www.youtube.com" },
-  { socialType: "facebook", socialUrl: "http://www.facebook.com" },
-  { socialType: "linkedin", socialUrl: "http://www.linkedin.com" },
-  { socialType: "x", socialUrl: "http://www.twitter.com" },
-]
-
-export function MainNav() {
+export function MainNav({
+  navInfo,
+  categoriesInfo,
+}: {
+  navInfo: SanityDocument
+  categoriesInfo: SanityDocument[]
+}) {
   return (
     <div className="flex flex-col h-screen w-56 pt-7 pr-7 pl-6 2xl:w-64 2xl:pl-10 2xl:pt-8 2xl:pr-8">
       <div>
         <Link href="/">
           <div className="h-14">
-            <SidebarHeading className="capitalize">Sleepy Hifey</SidebarHeading>
+            <SidebarHeading className="capitalize">
+              {navInfo.title}
+            </SidebarHeading>
           </div>
         </Link>
         <ul className="pl-2 space-y-7">
@@ -46,22 +38,24 @@ export function MainNav() {
           <li>
             <div className="h-8">
               <SidebarGroupText className="uppercase">
-                illustrations
+                {navInfo.firstGroup}
               </SidebarGroupText>
             </div>
             <ul>
-              {items?.map((item, idx) => (
+              {categoriesInfo?.map((categoryInfo, idx) => (
                 <NavItem
                   key={idx}
-                  itemText={item}
-                  navUrl={`/${item.toLowerCase()}`}
+                  itemText={categoryInfo.categoryName}
+                  navUrl={`/${categoryInfo.slug}`}
                 />
               ))}
             </ul>
           </li>
           <li>
             <div className="h-8">
-              <SidebarGroupText className="uppercase">info</SidebarGroupText>
+              <SidebarGroupText className="uppercase">
+                {navInfo.secondGroup}
+              </SidebarGroupText>
             </div>
 
             <ul>
@@ -78,7 +72,7 @@ export function MainNav() {
       </div>
       <div className="flex flex-col grow justify-end">
         <div className="inline-flex space-x-3 justify-center mb-2">
-          {socials?.map((social: any, idx: number) => (
+          {navInfo.socials?.map((social: any, idx: number) => (
             <Link
               key={idx}
               href={social.socialUrl || "/"}

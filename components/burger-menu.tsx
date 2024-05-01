@@ -19,11 +19,9 @@ export function BurgerMenu({ active = false, onClick }: BurgerMenuProps) {
       )}
       onClick={onClick}
     >
-      {/* <div className="flex justify-center items-center" aria-hidden> */}
       <div
         className={cn("w-6 bg-primary h-[2px]", active ? "hidden" : "")}
       ></div>
-      {/* </div> */}
     </button>
   )
 }

@@ -23,7 +23,7 @@ export function AboutSection({ aboutSection }: { aboutSection: any[] }) {
     <section ref={ref} id="about">
       <div className="xl:mx-7 md:px-5 py-12">
         <ul className="grid md:grid-cols-3 gap-3 lg:gap-20">
-          {aboutSection.map((aboutInfo, idx) => (
+          {aboutSection?.map((aboutInfo, idx) => (
             <motion.li
               key={idx}
               variants={cardVariants}
@@ -33,10 +33,10 @@ export function AboutSection({ aboutSection }: { aboutSection: any[] }) {
             >
               <div className="flex flex-col gap-y-5">
                 <SidebarItemText className="font-light uppercase">
-                  {aboutInfo.subHeader}
+                  {aboutInfo.subtitle}
                 </SidebarItemText>
                 <PageHeaderHeading className="font-bold capitalize">
-                  {aboutInfo.header}
+                  {aboutInfo.title}
                 </PageHeaderHeading>
                 <PageHeaderDescription className="text-lg">
                   {aboutInfo.description}

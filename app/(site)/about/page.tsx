@@ -1,37 +1,23 @@
-import aboutImage from "@/public/about-image.jpg"
+import { SanityDocument } from "next-sanity"
+import { draftMode } from "next/headers"
 
 import About from "@/components/about"
 
-const heroSection = {
-  heroLabel: "Hey, I'm Jeni!",
-  heroImage: aboutImage,
-}
+import { loadQuery } from "@/sanity/lib/store"
+import { ABOUT_QUERY } from "@/sanity/lib/queries"
 
-const aboutSection = [
-  {
-    subHeader: "a little about me",
-    header: "bio",
-    description:
-      "I am a New Zealand-born commercial illustrator, currently working in New York City.",
-  },
-  {
-    subHeader: "about my process",
-    header: "work",
-    description:
-      "With a subtle minimalistic approach, I strive to create work that is clear and memorable.",
-  },
-  {
-    subHeader: "have question?",
-    header: "representation",
-    description:
-      "I am represented by Andrea Carolla Agency. Please direct all inquiries through the contact form here.",
-  },
-]
+export default async function AboutPage() {
+  const aboutInitial = await loadQuery<SanityDocument>(
+    ABOUT_QUERY,
+    {},
+    {
+      perspective: draftMode().isEnabled ? "previewDrafts" : "published",
+    }
+  )
 
-export default function AboutPage() {
   return (
     <main className="flex flex-col items-center">
-      <About heroSection={heroSection} aboutSection={aboutSection} />
+      <About aboutData={aboutInitial.data} />
     </main>
   )
 }

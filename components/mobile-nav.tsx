@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { SanityDocument } from "next-sanity"
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 
@@ -9,7 +10,11 @@ import { SidebarHeading } from "./page-text"
 import { BurgerMenu } from "./burger-menu"
 import { MobileNavMenu } from "./mobile-nav-menu"
 
-export function MobileNav() {
+export function MobileNav({
+  categoriesInfo,
+}: {
+  categoriesInfo: SanityDocument[]
+}) {
   const { scrollY } = useScroll()
 
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -48,6 +53,7 @@ export function MobileNav() {
       <div className="block md:hidden">
         {showMobileMenu && (
           <MobileNavMenu
+            categoriesInfo={categoriesInfo}
             onClick={() => setShowMobileMenu(!showMobileMenu)}
           ></MobileNavMenu>
         )}

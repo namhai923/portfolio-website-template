@@ -7,6 +7,7 @@ import { motion, useInView } from "framer-motion"
 
 import { PageHeader } from "./page-text"
 
+import { urlFor } from "@/sanity/lib/utils"
 import { imagePlaceholder } from "@/lib/utils"
 
 export function HeroSection({ heroSection }: { heroSection: any }) {
@@ -30,14 +31,18 @@ export function HeroSection({ heroSection }: { heroSection: any }) {
         <Image
           priority
           className="rounded-2xl"
-          src={heroSection.heroImage ?? imagePlaceholder}
+          src={
+            heroSection.cover
+              ? urlFor(heroSection.cover).url()
+              : imagePlaceholder
+          }
           alt="hero image"
           fill
           style={{ objectFit: "cover" }}
         />
         <PageHeader>
           <h2 className="absolute h-full w-full place-content-center text-center text-5xl font-mono font-medium text-primary">
-            {heroSection.heroLabel}
+            {heroSection.title}
           </h2>
         </PageHeader>
       </motion.div>

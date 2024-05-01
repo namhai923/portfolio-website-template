@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useRef } from "react"
+import { SanityDocument } from "next-sanity"
 
 import { motion, useInView } from "framer-motion"
 
@@ -14,20 +15,16 @@ import {
 } from "./page-text"
 import { Separator } from "./ui/separator"
 
-export default function About({
-  heroSection,
-  aboutSection,
-}: {
-  heroSection: any
-  aboutSection: any[]
-}) {
+export default function About({ aboutData }: { aboutData: SanityDocument }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
 
   return (
     <div className="container relative space-y-5 pt-24 md:pt-10">
-      <HeroSection heroSection={heroSection} />
-      <AboutSection aboutSection={aboutSection} />
+      <HeroSection
+        heroSection={{ cover: aboutData.cover, title: aboutData.title }}
+      />
+      <AboutSection aboutSection={aboutData.aboutItems} />
       <motion.div
         ref={ref}
         variants={{
@@ -41,25 +38,21 @@ export default function About({
       >
         <div className="flex flex-col gap-y-5 text-center place-items-center">
           <PageHeaderHeading className="font-bold">
-            {"Ready to make it official?"}
+            {aboutData.contactMessage.title}
           </PageHeaderHeading>
           <Link href={"/contact"}>
             <PageHeaderDescription className="text-lg text-destructive underline uppercase">
-              {"get in touch"}
+              {aboutData.contactMessage.subtitle}
             </PageHeaderDescription>
           </Link>
         </div>
         <Separator />
         <div className="flex flex-col gap-y-5 text-center place-items-center">
           <SidebarItemText className="font-bold text-secondary">
-            {
-              "This example features work from the following illustrators and photographers:"
-            }
+            {aboutData.footerMessage.title}
           </SidebarItemText>
           <PageHeaderDescription className="text-xs">
-            {
-              "Gabrielle Henderson, Katerina Limpitsouni, Pablo Stanley, Vijay Verma"
-            }
+            {aboutData.footerMessage.subtitle}
           </PageHeaderDescription>
         </div>
       </motion.div>
