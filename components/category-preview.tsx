@@ -9,12 +9,14 @@ import { CATEGORY_QUERY } from "@/sanity/lib/queries"
 
 export default function CategoryPreview({
   categoryInitial,
+  params,
 }: {
   categoryInitial: QueryResponseInitial<SanityDocument>
+  params: QueryParams
 }) {
   const { data: categoryData } = useQuery<SanityDocument | null>(
     CATEGORY_QUERY,
-    {},
+    params,
     { initial: categoryInitial }
   )
 
