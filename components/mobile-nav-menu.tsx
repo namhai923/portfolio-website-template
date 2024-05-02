@@ -143,7 +143,7 @@ export function MobileNavSub({
             {subItems?.map((item, idx) => (
               <NavItem
                 key={idx}
-                itemText={item.categoryName}
+                itemText={item.name}
                 navUrl={`/${item.slug}`}
                 onClick={onClick}
               />

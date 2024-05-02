@@ -32,18 +32,18 @@ export default function Home({ categories }: { categories: SanityDocument[] }) {
                   <Image
                     priority
                     src={
-                      category.categoryCover
-                        ? urlFor(category.categoryCover).url()
+                      category.cover
+                        ? urlFor(category.cover).url()
                         : imagePlaceholder
                     }
-                    alt={category.categoryName}
+                    alt={category.name}
                     fill
                     sizes="(min-width: 1000px) 30vw, 50vw"
                     style={{ objectFit: "cover" }}
                   />
                   <div className="absolute h-full w-full bg-primary flex items-center justify-center opacity-70 md:opacity-0 group-hover:opacity-70 transition duration-200 ease-out"></div>
-                  <div className="absolute h-full w-full text-2xl text-background place-content-center text-center font-bold md:opacity-0 group-hover:opacity-100 transition duration-300 ease-out">
-                    {category.categoryName}
+                  <div className="absolute h-full w-full text-2xl text-background place-content-center text-center capitalize font-bold md:opacity-0 group-hover:opacity-100 transition duration-300 ease-out">
+                    {category.name}
                   </div>
                 </div>
               </div>

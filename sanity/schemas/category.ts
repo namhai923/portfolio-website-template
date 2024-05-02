@@ -26,7 +26,7 @@ export default defineType({
       title: "Slug",
       type: "slug",
       options: {
-        source: "Name",
+        source: "name",
         maxLength: 96,
       },
     }),
@@ -57,8 +57,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      cover: "categoryCover",
-      name: "categoryName",
+      cover: "cover",
+      name: "name",
     },
     prepare({ cover, name }) {
       return {

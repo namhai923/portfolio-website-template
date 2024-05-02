@@ -36,7 +36,7 @@ export function MainNav({
               {categoriesInfo?.map((categoryInfo, idx) => (
                 <NavItem
                   key={idx}
-                  itemText={categoryInfo.categoryName}
+                  itemText={categoryInfo.name}
                   navUrl={`/${categoryInfo.slug}`}
                 />
               ))}
