@@ -1,7 +1,7 @@
 "use client"
 
 import { QueryResponseInitial, useQuery } from "@sanity/react-loader"
-import { SanityDocument } from "next-sanity"
+import { QueryParams, SanityDocument } from "next-sanity"
 
 import Category from "./category"
 
