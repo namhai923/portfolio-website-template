@@ -28,7 +28,11 @@ import {
 import { urlFor } from "@/sanity/lib/utils"
 import { imagePlaceholder } from "@/lib/utils"
 
-export default function Gallery({ category }: { category: SanityDocument }) {
+export default function Gallery({
+  categoryData,
+}: {
+  categoryData: SanityDocument
+}) {
   const cardVariants = {
     initial: { y: 50, opacity: 0 },
     animate: { y: 0, opacity: 1 },
@@ -54,9 +58,9 @@ export default function Gallery({ category }: { category: SanityDocument }) {
         transition={{ duration: 0.3 }}
       >
         <PageHeader className="relative p-10">
-          <PageHeaderHeading>{category.categoryTitle}</PageHeaderHeading>
+          <PageHeaderHeading>{categoryData.title}</PageHeaderHeading>
           <PageHeaderDescription>
-            {category.categoryDescription}
+            {categoryData.description}
           </PageHeaderDescription>
         </PageHeader>
       </motion.div>
@@ -67,17 +71,14 @@ export default function Gallery({ category }: { category: SanityDocument }) {
         elementClassNames={"grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"}
         speed={500}
       >
-        {category.categoryItems?.map(
-          (
-            categoryItem: { itemCover: any; itemDescription: string },
-            idx: number
-          ) => {
+        {categoryData.categoryItems?.map(
+          (categoryItem: { cover: any; description: string }, idx: number) => {
             return (
               <a
                 key={idx}
                 data-src={
-                  categoryItem.itemCover
-                    ? urlFor(categoryItem.itemCover).url()
+                  categoryItem.cover
+                    ? urlFor(categoryItem.cover).url()
                     : imagePlaceholder
                 }
               >
@@ -92,11 +93,11 @@ export default function Gallery({ category }: { category: SanityDocument }) {
                     priority
                     className="hover:scale-105 duration-500 ease-out"
                     src={
-                      categoryItem.itemCover
-                        ? urlFor(categoryItem.itemCover).url()
+                      categoryItem.cover
+                        ? urlFor(categoryItem.cover).url()
                         : imagePlaceholder
                     }
-                    alt={categoryItem.itemDescription}
+                    alt={categoryItem.description}
                     fill
                     sizes="(min-width: 1000px) 30vw, 50vw"
                     style={{ objectFit: "cover" }}

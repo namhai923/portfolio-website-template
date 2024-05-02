@@ -6,16 +6,17 @@ import { AnimatePresence, motion } from "framer-motion"
 import { IconChevronDown } from "@tabler/icons-react"
 
 import { NavItem } from "./nav-item"
+import { SocialNav } from "./social-nav"
 
 import { cn } from "@/lib/utils"
 import { useLockBody } from "@/hooks/use-lock-body"
 
-const items = ["illustrations", "about", "contact"]
-
 export function MobileNavMenu({
+  navInfo,
   categoriesInfo,
   onClick,
 }: {
+  navInfo: SanityDocument
   categoriesInfo: SanityDocument[]
   onClick?: () => void
 }) {
@@ -32,26 +33,33 @@ export function MobileNavMenu({
           <div className="relative z-20 flex justify-center items-center h-screen w-full">
             <nav className="grid grid-flow-row auto-rows-max text-sm relative">
               <ul className="text-center">
-                <NavItem itemText={"home"} navUrl={"/"} onClick={onClick} />
-                {items?.map((item, idx) => (
-                  <div key={idx}>
-                    {item === "illustrations" ? (
-                      <MobileNavSub
-                        item={item}
-                        subItems={categoriesInfo}
-                        onClick={onClick}
-                      />
-                    ) : (
-                      <NavItem
-                        itemText={item}
-                        navUrl={`/${item.toLowerCase()}`}
-                        onClick={onClick}
-                      />
-                    )}
-                  </div>
-                ))}
+                <NavItem
+                  itemText={navInfo.homeLabel ?? "home"}
+                  navUrl="/"
+                  onClick={onClick}
+                />
+                <MobileNavSub
+                  item={navInfo.firstGroup ?? "illustrations"}
+                  subItems={categoriesInfo}
+                  onClick={onClick}
+                />
+                <NavItem
+                  itemText={navInfo.aboutLabel ?? "about"}
+                  navUrl="/about"
+                  onClick={onClick}
+                />
+                <NavItem
+                  itemText={navInfo.contactLabel ?? "contact"}
+                  navUrl="/contact"
+                  onClick={onClick}
+                />
               </ul>
             </nav>
+            {navInfo.socials && (
+              <div className="absolute bottom-12 left-50% -translate-x-[1/2]">
+                <SocialNav socials={navInfo.socials} />
+              </div>
+            )}
           </div>
         </div>,
         document.body,

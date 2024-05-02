@@ -2,12 +2,13 @@ import "@/styles/globals.css"
 
 import type { Metadata } from "next"
 import { draftMode } from "next/headers"
+// import { VisualEditing } from "next-sanity"
 
 import { siteConfig } from "@/config/site"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
-import VisualEditing from "@/components/visual-editing"
 import { SiteNav } from "@/components/site-nav"
+import VisualEditing from "@/components/visual-editing"
 
 import { fontMono, fontPopp, fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
@@ -45,8 +46,8 @@ export default function RootLayout({
             <ScrollArea className="h-screen">{children}</ScrollArea>
           </div>
           <div className="flex-1 block md:hidden">{children}</div>
-          {draftMode().isEnabled && <VisualEditing />}
         </div>
+        {draftMode().isEnabled && <VisualEditing />}
       </body>
     </html>
   )

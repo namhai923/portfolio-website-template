@@ -3,18 +3,9 @@
 import Link from "next/link"
 import { SanityDocument } from "next-sanity"
 
-import {
-  IconBrandYoutubeFilled,
-  IconBrandX,
-  IconBrandInstagram,
-  IconBrandFacebook,
-  IconBrandLinkedin,
-} from "@tabler/icons-react"
-
 import { SidebarHeading, SidebarGroupText } from "./page-text"
 import { NavItem } from "./nav-item"
-
-let aboutItems = ["About", "Contact"]
+import { SocialNav } from "./social-nav"
 
 export function MainNav({
   navInfo,
@@ -34,11 +25,11 @@ export function MainNav({
           </div>
         </Link>
         <ul className="pl-2 space-y-7">
-          <NavItem itemText="home" navUrl="/" />
+          <NavItem itemText={navInfo.homeLabel ?? "home"} navUrl="/" />
           <li>
             <div className="h-8">
               <SidebarGroupText className="uppercase">
-                {navInfo.firstGroup}
+                {navInfo.firstGroup ?? "illustrations"}
               </SidebarGroupText>
             </div>
             <ul>
@@ -54,48 +45,29 @@ export function MainNav({
           <li>
             <div className="h-8">
               <SidebarGroupText className="uppercase">
-                {navInfo.secondGroup}
+                {navInfo.secondGroup ?? "info"}
               </SidebarGroupText>
             </div>
 
             <ul>
-              {aboutItems?.map((item, idx) => (
-                <NavItem
-                  key={idx}
-                  itemText={item}
-                  navUrl={`/${item.toLowerCase()}`}
-                />
-              ))}
+              <NavItem
+                itemText={navInfo.aboutLabel ?? "about"}
+                navUrl="/about"
+              />
+              <NavItem
+                itemText={navInfo.contactLabel ?? "contact"}
+                navUrl="/contact"
+              />
             </ul>
           </li>
         </ul>
       </div>
-      <div className="flex flex-col grow justify-end">
-        <div className="inline-flex space-x-3 justify-center mb-2">
-          {navInfo.socials?.map((social: any, idx: number) => (
-            <Link
-              key={idx}
-              href={social.socialUrl || "/"}
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              {social.socialType === "instagram" ? (
-                <IconBrandInstagram className="h-5 w-5 text-secondary hover:text-primary" />
-              ) : social.socialType === "youtube" ? (
-                <IconBrandYoutubeFilled className="h-5 w-5 text-secondary hover:text-primary" />
-              ) : social.socialType === "facebook" ? (
-                <IconBrandFacebook className="h-5 w-5 text-secondary hover:text-primary" />
-              ) : social.socialType === "linkedin" ? (
-                <IconBrandLinkedin className="h-5 w-5 text-secondary hover:text-primary" />
-              ) : social.socialType === "x" ? (
-                <IconBrandX className="h-5 w-5 text-secondary hover:text-primary" />
-              ) : (
-                ""
-              )}
-            </Link>
-          ))}
+
+      {navInfo.socials && (
+        <div className="flex flex-col grow justify-end">
+          <SocialNav socials={navInfo.socials} />
         </div>
-      </div>
+      )}
     </div>
   )
 }

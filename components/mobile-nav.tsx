@@ -11,8 +11,10 @@ import { BurgerMenu } from "./burger-menu"
 import { MobileNavMenu } from "./mobile-nav-menu"
 
 export function MobileNav({
+  navInfo,
   categoriesInfo,
 }: {
+  navInfo: SanityDocument
   categoriesInfo: SanityDocument[]
 }) {
   const { scrollY } = useScroll()
@@ -41,7 +43,9 @@ export function MobileNav({
         className="fixed left-0 z-50 w-full px-8 bg-background container flex h-16 items-center justify-between"
       >
         <Link href="/">
-          <SidebarHeading className="capitalize">Jeni Kim</SidebarHeading>
+          <SidebarHeading className="capitalize">
+            {navInfo.title}
+          </SidebarHeading>
         </Link>
         <div className="flex items-center">
           <BurgerMenu
@@ -53,6 +57,7 @@ export function MobileNav({
       <div className="block md:hidden">
         {showMobileMenu && (
           <MobileNavMenu
+            navInfo={navInfo}
             categoriesInfo={categoriesInfo}
             onClick={() => setShowMobileMenu(!showMobileMenu)}
           ></MobileNavMenu>

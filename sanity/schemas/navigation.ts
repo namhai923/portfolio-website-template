@@ -11,6 +11,12 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "homeLabel",
+      title: "Home Label",
+      type: "string",
+      initialValue: "Home",
+    }),
+    defineField({
       name: "firstGroup",
       title: "First Group",
       type: "string",
@@ -19,6 +25,18 @@ export default defineType({
       name: "secondGroup",
       title: "Second Group",
       type: "string",
+    }),
+    defineField({
+      name: "aboutLabel",
+      title: "About Label",
+      type: "string",
+      initialValue: "About",
+    }),
+    defineField({
+      name: "contactLabel",
+      title: "Contact Label",
+      type: "string",
+      initialValue: "Contact",
     }),
     defineField({
       name: "socials",

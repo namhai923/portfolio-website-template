@@ -1,20 +1,20 @@
 import { groq } from "next-sanity"
 
 export const CATEGORIES_INFO_QUERY = groq`*[_type == "category"]|order(orderRank) {
-  categoryName,
+  name,
   "slug": slug.current
 }`
 
 export const CATEGORIES_QUERY = groq`*[_type == "category"]|order(orderRank) {
-  categoryName,
+  name,
   "slug": slug.current,
-  categoryCover
+  cover
 }`
 
 export const CATEGORY_QUERY = groq`*[_type == 'category' && slug.current == $slug][0] {
-  categoryTitle,
-  categoryDescription,
-  categoryItems[]{itemDescription, itemCover}
+  title,
+  description,
+  categoryItems[]{description, cover}
 }`
 
 export const ABOUT_QUERY = groq`*[_type == "about"][0] {
@@ -34,7 +34,10 @@ export const CONTACT_QUERY = groq`*[_type == "contact"][0] {
 
 export const NAV_QUERY = groq`*[_type == "navigation"][0] {
   title,
+  homeLabel,
   firstGroup,
   secondGroup,
+  aboutLabel,
+  contactLabel,
   socials[]{socialType, socialUrl}
 }`

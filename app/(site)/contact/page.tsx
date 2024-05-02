@@ -1,7 +1,8 @@
 import { SanityDocument } from "next-sanity"
 import { draftMode } from "next/headers"
 
-import ContactSection from "@/components/contact-section"
+import Contact from "@/components/contact"
+import ContactPreview from "@/components/contact-preview"
 
 import { loadQuery } from "@/sanity/lib/store"
 import { CONTACT_QUERY } from "@/sanity/lib/queries"
@@ -15,9 +16,9 @@ export default async function ContactPage() {
     }
   )
 
-  return (
-    <main className="container relative space-y-5 pt-24 md:pt-10">
-      <ContactSection contactData={contactInitial.data} />
-    </main>
+  return draftMode().isEnabled ? (
+    <ContactPreview contactInitial={contactInitial} />
+  ) : (
+    <Contact contactData={contactInitial.data} />
   )
 }
