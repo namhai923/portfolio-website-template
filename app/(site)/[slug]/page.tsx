@@ -32,7 +32,7 @@ export default async function CategoryPage({
   )
 
   return draftMode().isEnabled ? (
-    <CategoryPreview categoryInitial={categoryInitial} params={params/>
+    <CategoryPreview categoryInitial={categoryInitial} params={params} />
   ) : (
     <Category categoryData={categoryInitial.data} />
   )
