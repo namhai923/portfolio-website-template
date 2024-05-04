@@ -56,7 +56,7 @@ export function MobileNavMenu({
               </ul>
             </nav>
             {navInfo.socials && (
-              <div className="absolute bottom-12 left-50% -translate-x-[1/2]">
+              <div className="absolute bottom-48">
                 <SocialNav socials={navInfo.socials} />
               </div>
             )}
