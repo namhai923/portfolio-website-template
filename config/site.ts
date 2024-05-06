@@ -1,10 +1,11 @@
 const url = process.env.NEXT_PUBLIC_SITE_URL!
 
 export const siteConfig = {
-  name: "Porfolio Template",
+  name: "Akias",
   url,
   description: "A portfolio website template",
   links: {
+    tailwindcss: "https://tailwindcss.com/",
     shadcn: "https://ui.shadcn.com/",
     sanity: "https://www.sanity.io/",
     hainguyen: "https://www.linkedin.com/in/akias/",

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   ...studioMetadata,
   title: "Loading Studio...",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
   },
 }
 
