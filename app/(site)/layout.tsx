@@ -2,7 +2,6 @@ import "@/styles/globals.css"
 
 import type { Metadata } from "next"
 import { draftMode } from "next/headers"
-// import { VisualEditing } from "next-sanity"
 
 import { siteConfig } from "@/config/site"
 

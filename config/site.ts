@@ -1,8 +1,5 @@
-const url = process.env.NEXT_PUBLIC_SITE_URL!
-
 export const siteConfig = {
   name: "Akias",
-  url,
   description: "A portfolio website template",
   links: {
     tailwindcss: "https://tailwindcss.com/",

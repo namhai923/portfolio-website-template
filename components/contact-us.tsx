@@ -2,9 +2,15 @@
 
 import { FormEvent, useState } from "react"
 
+import emailjs from "@emailjs/browser"
+
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 import { Button } from "./ui/button"
+
+const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!
+const publicKey = process.env.NEXT_PUBLIC_EMAILJS!
 
 const initFormState = {
   name: "",
@@ -18,20 +24,20 @@ export default function ContactUs() {
   const [isFormSending, setIsFormSending] = useState(false)
   const [formValue, setFormValue] = useState(initFormState)
 
-  const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsFormSending(true)
-    const formSubmit = await fetch(`/api/form-submit`, {
-      method: "POST",
-      body: JSON.stringify(formValue),
-      cache: "no-cache",
-    })
-    if (formSubmit.ok) {
-      alert("Your message have been sent")
-      setFormValue(initFormState)
-    } else {
-      alert("Something went wrong. Please try again")
-    }
+
+    emailjs
+      .send(serviceId, templateId, formValue, publicKey)
+      .then((response) => {
+        setFormValue(initFormState)
+        console.log("SUCCESS!", response)
+      })
+      .catch((error) => {
+        console.log("FAIL!", error)
+      })
+
     setIsFormSending(false)
   }
 
