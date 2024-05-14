@@ -1,7 +1,10 @@
 import "@/styles/globals.css"
+import "react-toastify/dist/ReactToastify.css"
 
 import type { Metadata } from "next"
 import { draftMode } from "next/headers"
+
+import { ToastContainer } from "react-toastify"
 
 import { siteConfig } from "@/config/site"
 
@@ -40,6 +43,7 @@ export default function RootLayout({
         )}
       >
         <div className="flex">
+          <ToastContainer />
           <SiteNav />
           <div className="flex-1 hidden md:block">
             <ScrollArea className="h-screen">{children}</ScrollArea>

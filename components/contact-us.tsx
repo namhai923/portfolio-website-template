@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react"
 
 import emailjs from "@emailjs/browser"
+import { toast, Slide } from "react-toastify"
 
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
@@ -30,9 +31,18 @@ export default function ContactUs() {
 
     emailjs
       .send(serviceId, templateId, formValue, publicKey)
-      .then((response) => {
+      .then(() => {
         setFormValue(initFormState)
-        console.log("SUCCESS!", response)
+        toast("🦆 Thank you for connecting!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Slide,
+        })
       })
       .catch((error) => {
         console.log("FAIL!", error)
