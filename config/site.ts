@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Akias",
+  name: "Portfolio Template",
   description: "A portfolio website template",
   links: {
     tailwindcss: "https://tailwindcss.com/",
